@@ -23,9 +23,9 @@ public class QQPlatform extends AbsPlatform {
 
     private QQHelper mHelper;
 
-    private QQPlatform(Context context, String baseUrl, String appId, String appName, String appKey,
+    private QQPlatform(Context context, boolean isServerTest, String appId, String appName, String appKey,
                        int target) {
-        super(context, baseUrl, appId, appName, appKey, target);
+        super(context, isServerTest, appId, appName, appKey, target);
     }
 
     @Override
@@ -58,9 +58,9 @@ public class QQPlatform extends AbsPlatform {
         public IPlatform create(Context context, int target) {
             IPlatform platform = null;
             LTGameOptions options = LTGameSdk.options();
-            if (!LTGameUtil.isAnyEmpty(options.getLtAppId(), options.getLtAppKey(), options.getBaseUrl(),
+            if (!LTGameUtil.isAnyEmpty(options.getLtAppId(), options.getLtAppKey(),
                     options.getQqAppId())) {
-                platform = new QQPlatform(context, options.getBaseUrl(), options.getLtAppId(), options.getLtAppKey(),
+                platform = new QQPlatform(context, options.getISServerTest(), options.getLtAppId(), options.getLtAppKey(),
                         options.getQqAppId(), target);
             }
             return platform;
